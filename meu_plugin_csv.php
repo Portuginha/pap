@@ -24,15 +24,14 @@ function exibir_receita_csv() {
             while (($data = fgetcsv($handle, 1000, ',')) !== false) {
                 echo '<li>';
 
-                // Exibir a imagem e o texto
+                // Exibir a primeira coluna (imagem)
                 if (isset($data[0]) && filter_var($data[0], FILTER_VALIDATE_URL)) {
                     echo '<div style="display: flex; align-items: center;">';
                     echo '<img src="' . esc_url($data[0]) . '" alt="" style="max-width: 200px; margin-right: 10px;">';
-                    
+
+                    // Exibir o texto
                     if (isset($data[1])) {
-                        echo '<div>';
                         echo '<p>' . esc_html($data[1]) . '</p>';
-                        echo '</div>';
                     }
 
                     echo '</div>';
